@@ -1,0 +1,27 @@
+@import './assets/styles/colors.scss';
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $grey-light!important;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  position: relative;
+}
+
+label {
+  vertical-align: top;
+}
+
+.container {
+  background-color: $white;
+  height: calc(100vh - 40px);
+  box-shadow: 0 0 10px $grey2;
+}

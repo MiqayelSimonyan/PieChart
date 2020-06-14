@@ -1,0 +1,13 @@
+@import './colors.scss';
+
+.navbar {
+    a {
+        color: $grey;
+        &.navigation-active {
+            color: $white;
+        }
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
