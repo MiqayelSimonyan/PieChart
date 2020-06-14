@@ -12,6 +12,7 @@ import ChartDataForm from './chart-data-form';
 
 const UpdateField = (props) => {
     const dispatch = useDispatch();
+    const { fieldIndex, chartIndex } = props;
     const { id: fieldId, name, value } = props.field;
 
     const formik = useFormik({
@@ -20,7 +21,15 @@ const UpdateField = (props) => {
         onSubmit: values => {
             const { name, value } = values;
 
-            dispatch(updateChartField({ index: props.index, chartId: props.chartId, fieldId, name, value }));
+            dispatch(
+                updateChartField({ 
+                    fieldIndex,
+                    chartIndex,
+                    fieldId,
+                    name,
+                    value
+                })
+            );
             toast.success('Field Updated');
         }
     });

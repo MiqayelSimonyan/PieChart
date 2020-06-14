@@ -21,10 +21,10 @@ const Charts = () => {
         if (!charts.length) history.push('/');
     }, [charts.length]);
 
-    const chartFieldDelete = (chartId, fieldId) => {        
+    const chartFieldDelete = (chartIndex, chartId, fieldId) => {        
         let confirmDelete = window.confirm('Are You Sure Delete Field?');
         if (confirmDelete) {
-            dispatch(deleteChartField({ chartId, fieldId }));
+            dispatch(deleteChartField({ chartIndex, chartId, fieldId }));
             toast.success('Field Deleted');
         };
     };
@@ -43,7 +43,7 @@ const Charts = () => {
             <div className="row">
                 {
                     !charts.length ? null :
-                    charts.map(chart => {
+                    charts.map((chart, chartIndex) => {
                         const { id: chartId, data } = chart;
 
                         return <div className="col-md-12" key={chartId}>
@@ -71,17 +71,25 @@ const Charts = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                    data.map((data, index) => {
+                                    data.map((data, fieldIndex) => {
                                         const { id: fieldId, name, value } = data;
 
                                         return <tr key={fieldId}>
                                             <td>{name}</td>
                                             <td>{value}</td>                                            
                                             <td>
-                                                <UpdateField index={index} chartId={chartId} field={data} />
+                                                <UpdateField 
+                                                    fieldIndex={fieldIndex}
+                                                    chartIndex={chartIndex}
+                                                    field={data}
+                                                />
                                             </td>
                                             <td>
-                                                <button className="btn btn-danger float-right ml-3" onClick={() => chartFieldDelete(chartId, fieldId)}>Delete Field</button>
+                                                <button className="btn btn-danger float-right ml-3" 
+                                                    onClick={() => chartFieldDelete(chartIndex, chartId, fieldId)}
+                                                >
+                                                    Delete Field
+                                                </button>
                                             </td>
                                         </tr>
                                     })   

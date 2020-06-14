@@ -35,16 +35,15 @@ export default function reducer(state = initialStateMap, action) {
 		}
 
 		case UPDATE_CHART_FIELD: {
-			const { index, chartId, fieldId, name, value } = action.payload;
+			const { fieldIndex, chartIndex, fieldId, name, value } = action.payload;
 
 			let chartData = state.get('chartData');
-			let chartIndex = chartData.findIndex(data => data.id === chartId);
 
 			return state
 				.set(
 					'chartData',
 					chartData.setIn(
-						[chartIndex, 'data', index],
+						[chartIndex, 'data', fieldIndex],
 						{ id: fieldId, name, value }
 					)
 				)
@@ -65,11 +64,10 @@ export default function reducer(state = initialStateMap, action) {
 		}
 
 		case DELETE_CHART_FIELD: {
-			const { chartId, fieldId } = action.payload;
+			const { chartIndex, chartId, fieldId } = action.payload;
 
 			let chartData = state.get('chartData');
-			let chartIndex = chartData.findIndex(data => data.id === chartId);
-			let chartFieldsLength = chartData.toJS()[chartIndex].data.length;
+			let chartFieldsLength = chartData.getIn([chartIndex, 'data']).length;
 
 			return state
 				.set(
