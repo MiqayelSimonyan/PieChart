@@ -71,14 +71,14 @@ const Charts = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                    data.map(data => {
+                                    data.map((data, index) => {
                                         const { id: fieldId, name, value } = data;
 
                                         return <tr key={fieldId}>
                                             <td>{name}</td>
                                             <td>{value}</td>                                            
                                             <td>
-                                                <UpdateField chartId={chartId} field={data} />
+                                                <UpdateField index={index} chartId={chartId} field={data} />
                                             </td>
                                             <td>
                                                 <button className="btn btn-danger float-right ml-3" onClick={() => chartFieldDelete(chartId, fieldId)}>Delete Field</button>

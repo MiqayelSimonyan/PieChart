@@ -23,18 +23,30 @@ export default function reducer(state = initialStateMap, action) {
 
 			return state
 				.set(
-						'chartData', chartIndex > -1
-					?
-						chartData.update(
-							chartIndex,
-							chart => {
-								const { id, data } = chart;
+					'chartData', chartIndex > -1
+				?
+					chartData.setIn(
+						[chartIndex, 'data', chartData.getIn([chartIndex, 'data']).length],
+						payloadData
+					)
+				:
+					List.of(...state.get('chartData'), { id: payloadId, data: [payloadData] })
+				)
+		}
 
-								return { id, data: [...data, payloadData] }
-							}
-						)
-					:
-						List.of(...state.get('chartData'), { id: payloadId, data: [payloadData] })
+		case UPDATE_CHART_FIELD: {
+			const { index, chartId, fieldId, name, value } = action.payload;
+
+			let chartData = state.get('chartData');
+			let chartIndex = chartData.findIndex(data => data.id === chartId);
+
+			return state
+				.set(
+					'chartData',
+					chartData.setIn(
+						[chartIndex, 'data', index],
+						{ id: fieldId, name, value }
+					)
 				)
 		}
 
@@ -48,34 +60,6 @@ export default function reducer(state = initialStateMap, action) {
 						...state.get('chartData').filter(chart => {
 							return chart.id !== chartId;
 						})
-					)
-				)
-		}
-
-		case UPDATE_CHART_FIELD: {
-			const { chartId, fieldId, name, value } = action.payload;
-
-			let chartData = state.get('chartData');
-			let chartIndex = chartData.findIndex(data => data.id === chartId);
-
-			return state
-				.set(
-					'chartData',
-					chartData.update(
-						chartIndex,
-						chart => {
-							const { id, data } = chart;
-							let dataIndex = data.findIndex(field => field.id === fieldId);
-
-							let dataCopy = [...data];
-							dataCopy[dataIndex].name = name;
-							dataCopy[dataIndex].value = value;
-
-							return {
-								id,
-								data: dataCopy
-							}
-						}
 					)
 				)
 		}
@@ -127,6 +111,13 @@ export function createChart(payload) {
 	}
 };
 
+export function updateChartField(payload) {
+	return {
+		type: UPDATE_CHART_FIELD,
+		payload
+	}
+};
+
 export function deleteChart(payload) {
 	return {
 		type: DELETE_CHART,
@@ -137,13 +128,6 @@ export function deleteChart(payload) {
 export function deleteChartField(payload) {
 	return {
 		type: DELETE_CHART_FIELD,
-		payload
-	}
-};
-
-export function updateChartField(payload) {
-	return {
-		type: UPDATE_CHART_FIELD,
 		payload
 	}
 };

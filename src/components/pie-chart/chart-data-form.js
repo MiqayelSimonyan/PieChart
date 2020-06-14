@@ -3,7 +3,7 @@ import React from 'react';
 import ErrorField from '../common/error-field';
 
 const ChartDataForm = (props) => {
-    const { handleSubmit, handleChange, handleBlur, touched, errors, isValid, dirty, values } = props;
+    const { handleSubmit, handleChange, handleBlur, touched, errors, isValid, dirty, values, formSubmitValue } = props;
 
     return (
         <form className="col-md-12" onSubmit={handleSubmit}>                    
@@ -41,10 +41,11 @@ const ChartDataForm = (props) => {
                 <button
                     className="btn btn-primary add-filed ml-3"
                     disabled={!(isValid && dirty)}
+                    type="submit"
                     style={{
                         cursor: isValid && dirty ? 'pointer' : 'no-drop'
                     }}>
-                        Add Filed To Chart
+                        {formSubmitValue}
                 </button>
             </div>
         </form>

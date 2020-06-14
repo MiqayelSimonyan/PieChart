@@ -20,7 +20,7 @@ const UpdateField = (props) => {
         onSubmit: values => {
             const { name, value } = values;
 
-            dispatch(updateChartField({ chartId: props.chartId, fieldId, name, value }));
+            dispatch(updateChartField({ index: props.index, chartId: props.chartId, fieldId, name, value }));
             toast.success('Field Updated');
         }
     });
@@ -30,6 +30,7 @@ const UpdateField = (props) => {
     return (
         <Popup value="Update Field">
             <ChartDataForm
+                formSubmitValue="Update"
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 handleBlur={handleBlur}

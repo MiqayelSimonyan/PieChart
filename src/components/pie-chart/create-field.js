@@ -57,6 +57,7 @@ const CreateFiled = () => {
                     </button>
                 </div>
                 <ChartDataForm
+                    formSubmitValue="Add Filed To Chart"
                     handleSubmit={handleSubmit}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
