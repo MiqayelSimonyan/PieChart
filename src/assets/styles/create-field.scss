@@ -1,0 +1,13 @@
+@import './colors.scss';
+
+.charts-button {
+    padding: 0;
+    a {
+        color: $white;
+        padding: .375rem .75rem;
+        display: block;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

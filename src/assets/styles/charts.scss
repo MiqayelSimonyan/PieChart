@@ -1,0 +1,16 @@
+.table {
+    thead {
+        th {
+            border-top: 1px solid #909090;
+            border-bottom: 1px solid #909090;
+        }
+    }
+    td {
+        border-top: 1px solid #909090;
+    }
+}
+
+.delete-chart, .update-chart {
+    font-size: 15px;
+    line-height: 17px;
+}
