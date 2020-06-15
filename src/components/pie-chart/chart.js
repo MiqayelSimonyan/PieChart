@@ -14,16 +14,22 @@ const Chart = (props) => {
     const chartData = useSelector(getChartByIdSelector(props.match.params.id));
 
     useEffect(() => {
-        let chart = am4core.create("chartdiv", am4charts.PieChart3D);
-        let data = chartData;
+        let chartDataLength = chartData?.data?.length;
 
-        chart.data = data.data;
-        if (!data) history.push('/');
+        if (!chartDataLength) history.push('/');
+
+        let chart = am4core.create("chartdiv", am4charts.PieChart3D);
+   
+        if (chartDataLength) chart.data = chartData.data;
         chart.logo.disabled = true;
 
         let series = chart.series.push(new am4charts.PieSeries3D());
         series.dataFields.value = "value";
         series.dataFields.category = "name";
+
+        return (() => {
+            if (chart) chart.dispose();
+        });
     });
 
     return (
