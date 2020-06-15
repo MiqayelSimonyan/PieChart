@@ -1,6 +1,8 @@
 
 ### `npm install`
 
+### `npm install -g node-sass (if it necessary)`
+
 ### `yarn start or npm start`
 
 Runs the app in the development mode.<br />
