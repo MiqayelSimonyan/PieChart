@@ -6,7 +6,7 @@ const ChartDataForm = (props) => {
     const { handleSubmit, handleChange, handleBlur, touched, errors, isValid, dirty, values, formSubmitValue } = props;
 
     return (
-        <form className="col-md-12" onSubmit={handleSubmit}>                    
+        <form className="col-md-12" onSubmit={handleSubmit}>
             <div className="form-group col-md-12">
                 <label className="col-md-5">
                     name
@@ -37,7 +37,7 @@ const ChartDataForm = (props) => {
                 </label>
 
             </div>
-            <div className="form-group col-md-12">                        
+            <div className="form-group col-md-12">
                 <button
                     className="btn btn-primary add-filed ml-3"
                     disabled={!(isValid && dirty)}
@@ -45,7 +45,7 @@ const ChartDataForm = (props) => {
                     style={{
                         cursor: isValid && dirty ? 'pointer' : 'no-drop'
                     }}>
-                        {formSubmitValue}
+                    {formSubmitValue}
                 </button>
             </div>
         </form>

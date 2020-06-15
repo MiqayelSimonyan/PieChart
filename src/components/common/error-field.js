@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../assets/styles/error-field.scss';
+import '../../assets/styles/layout/error-field.scss';
 
 const ErrorField = (props) => {
     const { touched, errors, fieldName } = props;
@@ -10,7 +10,7 @@ const ErrorField = (props) => {
             <span className="col-md-12 error-field">
                 {errors[fieldName]}
             </span>
-        : null
+            : null
     );
 };
 

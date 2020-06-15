@@ -16,9 +16,9 @@ const Chart = (props) => {
     useEffect(() => {
         let chart = am4core.create("chartdiv", am4charts.PieChart3D);
         let data = chartData;
-      
-       chart.data = data.data;
-       if (!data) history.push('/');
+
+        chart.data = data.data;
+        if (!data) history.push('/');
         chart.logo.disabled = true;
 
         let series = chart.series.push(new am4charts.PieSeries3D());

@@ -7,8 +7,8 @@ const Popup = (props) => {
 
     return (
         <>
-           <button 
-                className="btn btn-primary update-chart float-right ml-3 mt-1 mb-3"
+            <button
+                className={`btn btn-primary float-right ml-3 mt-1 mb-3 ${props.className}`}
                 onClick={() => setOpen(true)}>
                 {props.value}
             </button>

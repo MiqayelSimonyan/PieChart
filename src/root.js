@@ -16,7 +16,7 @@ const Root = () => {
                 <Route path="/" exact={true} component={PieChart} />
                 <Route path="/charts" exact={true} component={Charts} />
                 <Route path="/chart/:id" exact={true} component={Chart} />
-                <Route path="*" component={PageNotFound}/>
+                <Route path="*" component={PageNotFound} />
             </Switch>
         </>
     )

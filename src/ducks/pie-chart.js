@@ -24,13 +24,13 @@ export default function reducer(state = initialStateMap, action) {
 			return state
 				.set(
 					'chartData', chartIndex > -1
-				?
-					chartData.setIn(
-						[chartIndex, 'data', chartData.getIn([chartIndex, 'data']).length],
-						payloadData
-					)
-				:
-					List.of(...state.get('chartData'), { id: payloadId, data: [payloadData] })
+						?
+						chartData.setIn(
+							[chartIndex, 'data', chartData.getIn([chartIndex, 'data']).length],
+							payloadData
+						)
+						:
+						List.of(...state.get('chartData'), { id: payloadId, data: [payloadData] })
 				)
 		}
 
@@ -71,27 +71,27 @@ export default function reducer(state = initialStateMap, action) {
 
 			return state
 				.set(
-						'chartData', chartIndex > -1
-					?
+					'chartData', chartIndex > -1
+						?
 						chartFieldsLength < 2 ?
 							List.of(
 								...chartData.filter(chart => {
 									return chart.id !== chartId;
 								})
 							)
-						:
-						chartData.update(
-							chartIndex,
-							chart => {
-								const { id, data } = chart;
+							:
+							chartData.update(
+								chartIndex,
+								chart => {
+									const { id, data } = chart;
 
-								return {
-									id,
-									data: data.filter(field => field.id !== fieldId )
+									return {
+										id,
+										data: data.filter(field => field.id !== fieldId)
+									}
 								}
-							}
-						)
-					:
+							)
+						:
 						state.get('chartData')
 				)
 		}

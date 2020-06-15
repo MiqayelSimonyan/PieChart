@@ -10,5 +10,6 @@ export const getChartByIdSelector = id => {
             return chartData.find(data => {
                 return data.id === id;
             });
-    });
+        }
+    );
 };

@@ -22,7 +22,7 @@ const UpdateField = (props) => {
             const { name, value } = values;
 
             dispatch(
-                updateChartField({ 
+                updateChartField({
                     fieldIndex,
                     chartIndex,
                     fieldId,
@@ -37,7 +37,7 @@ const UpdateField = (props) => {
     const { handleSubmit, handleChange, handleBlur, values, isValid, touched, dirty, errors } = formik;
 
     return (
-        <Popup value="Update Field">
+        <Popup value="Update Field" className="update-chart">
             <ChartDataForm
                 formSubmitValue="Update"
                 handleSubmit={handleSubmit}
